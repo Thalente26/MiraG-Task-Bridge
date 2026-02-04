@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MiraG Task Bridge | Premium Recruitment South Africa</title>
+    <meta name="description" content="South Africa's premium bridge for domestic and task-based talent. Connecting excellence with opportunity.">
+    <meta name="keywords" content="Recruitment, South Africa, Jobs, Hiring, MiraG Task Bridge, Gardener, Nanny, Nannies, Car, Domestic, 
+    Casual, Worker, Waiters, Childcare, Landscape">
+    
+    <link rel="icon" type="image/png" href="M.PNG">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // YOUR CONFIGURATION
+  const SB_URL = "sb_publishable_v63h8E4vBpL0kQNcHSBlJw_jwQH7MaD";
+  const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jaHZhcmpnZ3BqcW1iandwZGFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk5OTQ2ODYsImV4cCI6MjA4NTU3MDY4Nn0.FakVUL6FS3pO_yTid3X-QX7L2JF7XlvM1FxSw1FdtZI";
+  
+  const supabase = supabase.createClient(SB_URL, SB_KEY);
+
+  // GLOBAL AUTH CHECKER (Keeps them logged in)
+  async function checkUser() {
+    const { data: { user } } = await supabase.auth.getUser();
+    return user;
+  }
+</script>
+
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark: #0a0a0a;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--dark); color: var(--white); overflow-x: hidden; }
+
+        /* DETACHED FLOATING NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            height: 70px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 1000;
+        }
+        .logo img { height: 40px; }
+        .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links a { color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* BURGER MENU */
+        .burger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .burger div { width: 25px; height: 3px; background: var(--gold); border-radius: 5px; }
+
+        /* HERO WITH BG VIDEO */
+        .hero { position: relative; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        #bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 0; }
+        
+        .hero-content { z-index: 1; text-align: center; }
+        /* NO BORDER LOGO */
+        .logo-img-front { width: 250px; margin-bottom: 10px; border-radius: 10px;}
+        
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .btn-primary { 
+            display: inline-block; margin-top: 30px; background: var(--gold); color: var(--dark); 
+            padding: 15px 40px; text-decoration: none; font-weight: 700; border-radius: 50px; text-transform: uppercase;
+        }
+
+        /* SPLIT SECTION */
+        .split-section { display: flex; height: 80vh; width: 100%; }
+        .split-box { 
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            text-align: center; transition: 0.5s; text-decoration: none; color: white;
+            position: relative; overflow: hidden; padding: 20px;
+        }
+        .split-box:hover { flex: 1.1; }
+        .boss-side { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('employer-bg.jpg') center/cover; border-right: 1px solid var(--gold); }
+        .worker-side { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('seeker-bg.jpg') center/cover; }
+        
+        .split-box h2 { font-size: 2.2rem; z-index: 1; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+        .split-box h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 5px; }
+        .split-box p { font-size: 0.9rem; margin-bottom: 25px; opacity: 0.8; max-width: 280px; }
+
+        /* SPLIT SECTION LOGIN BUTTON */
+        .btn-split {
+            border: 2px solid var(--gold); padding: 10px 30px; border-radius: 5px;
+            color: var(--gold); text-decoration: none; font-weight: 700; text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .btn-split:hover { background: var(--gold); color: var(--dark); }
+
+        /* REACH US SECTION */
+        .reach-us { padding: 80px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .contact-card { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('card.jpg') center/cover; height: 300px; border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold); }
+        .map-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--gold); }
+        .large-info-card { 
+            grid-column: span 2; background: rgba(255,255,255,0.05); padding: 40px; 
+            border-radius: 20px; border: 1px solid rgba(197, 160, 89, 0.2);
+            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+        }
+        .info-group h4 { color: var(--gold); margin-bottom: 15px; }
+        .social-links a { color: white; margin-right: 15px; text-decoration: none; opacity: 0.7; }
+        .social-links a:hover { opacity: 1; color: var(--gold); }
+
+       /* MOBILE RESPONSIVE UPDATES */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        right: 0; /* Changed to right for better animation flow */
+        width: 100%;
+        background: rgba(10, 10, 10, 0.95);
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid rgba(197, 160, 89, 0.3);
+        
+        /* Animation properties */
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s ease-in-out;
+        pointer-events: none; /* Prevents clicking invisible links */
+    }
+
+    /* This class is toggled by JavaScript */
+    .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .burger { display: flex; }
+    .split-section { flex-direction: column; height: 120vh; }
+    .reach-us { grid-template-columns: 1fr; }
+    .large-info-card { grid-column: span 1; }
+}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo"><img src="M.PNG" alt="MiraG Logo"></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#join">Work</a></li>
+            <li><a href="#reach">Contact</a></li>
+        </ul>
+        <div class="burger" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="grass.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="mtb.jpg" class="logo-img-front" alt="MiraG Logo">
+            <h1>Bridging the Gap</h1>
+            <p>MiraG Task Bridge is a premium recruitment agency dedicated to 
+                professionalizing domestic and task-based services across South Africa, fostering connections built on trust, 
+                 excellence, and opportunity.</p>
+            <a href="#join" class="btn-primary">Work With Us</a>
+        </div>
+    </section>
+
+    <section class="split-section" id="join">
+        <div class="split-box boss-side">
+            <h2>Employer</h2>
+            <h3>Hire Talent</h3>
+            <p>Professional & Task-Based talent for your projects.</p>
+            <a href="boss.html" class="btn-split">Login</a>
+        </div>
+        <div class="split-box worker-side">
+            <h2>Worker</h2>
+            <h3>Find Jobs</h3>
+            <p>Flexible & Domestic roles tailored to your skills.</p>
+            <a href="worker.html" class="btn-split">Login</a>
+        </div>
+    </section>
+
+    <section class="reach-us" id="reach">
+        <div class="contact-card">
+            <h3>Get In Touch</h3>
+        </div>
+        <div class="map-card">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105943.40356545712!2d25.50346087611833!3d-33.96158632617711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e7ad3b482390a43%3A0xc3f8e58607a7e8e!2sGqeberha!5e0!3m2!1sen!2sza!4v1715856424351!5m2!1sen!2sza" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="large-info-card">
+            <div class="info-group">
+                <h4>Contact Info</h4>
+                <p>Email: mirag.tb@safrica.com</p>
+                <p>(+27) 081 428 1877</p>
+                <p>Location: Gqeberha, Eastern Cape</p>
+            </div>
+            <div class="info-group">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://web.facebook.com/profile.php?id=61587499679706">Facebook</a>
+                    <a href="www.linkedin.com/in/mirag-task-bridge-b87b363aa">LinkedIn</a>
+                </div>
+            </div>
+            <div class="info-group">
+                <h4>Compliance</h4>
+                <a href="popia-compliance.pdf" style="color: var(--gold); text-decoration: none;">View/Download POPIA Doc</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+       function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    // Toggle the 'active' class for the slide animation
+    nav.classList.toggle('active');
+}
+
+// FIX: Close navbar when any link is clicked
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        const nav = document.getElementById('navLinks');
+        nav.classList.remove('active');
+    });
+});
+    </script>
+</body>
+</html>
